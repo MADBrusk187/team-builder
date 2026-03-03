@@ -534,8 +534,16 @@ return sponsorKeywords.filter(sk => playKeywords.indexOf(sk.ktype) >= 0);
 });
 
 self.printPreview = function() {
-    alert("CLICK FUNZIONA");
-}
+    self.collection.setCurrentTeam(self);
+    self.collection.printMode(true);
+
+    setTimeout(function() {
+        if (window.top !== window.self) {
+            window.open(window.location.href, '_blank');
+        } else {
+            window.print();
+        }
+    }, 300);
 }
 
 self.teamCost = ko.computed(function() {
